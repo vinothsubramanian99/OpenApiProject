@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj": {}
+    "d:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj": {}
   },
   "projects": {
-    "D:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj": {
+    "d:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
+        "projectUniqueName": "d:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
         "projectName": "OpenApiProject1",
-        "projectPath": "D:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
+        "projectPath": "d:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
         "packagesPath": "C:\\Users\\vinoth.s\\.nuget\\packages\\",
-        "outputPath": "D:\\VSCode\\OpenApi\\OpenApiProject1\\obj\\",
+        "outputPath": "d:\\VSCode\\OpenApi\\OpenApiProject1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vinoth.s\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.11, )"
@@ -68,6 +72,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[7.1.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.3.0, )"
             }
           },
           "imports": [

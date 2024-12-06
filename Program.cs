@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
   using Microsoft.AspNetCore.Hosting; 
   using Microsoft.Extensions.Hosting; 
   using Microsoft.Extensions.Logging;
+using OpenApiProject1.Validators;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,11 +17,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers(); 
 //builder.Services.AddTransient(typeof(IDataAccess<>), typeof(IDataAccess<>));
 builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }); });
+  builder.Services.AddTransient<ModelValidators>();
  builder.Services.AddTransient<GlobalExeceptionHandel>();
  builder.Logging.ClearProviders(); 
 builder.Logging.AddConsole(); 
 builder.Services.AddLogging();
 builder.Logging.AddFile("D:/VSCode/OpenApi/OpenApiProject1/log/myapp-{Date}.txt");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

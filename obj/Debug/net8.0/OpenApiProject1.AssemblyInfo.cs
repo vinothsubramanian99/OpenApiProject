@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OpenApiProject1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a051e0a3dde401773cddae8bec8cee9df791e08f")]
 [assembly: System.Reflection.AssemblyProductAttribute("OpenApiProject1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OpenApiProject1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

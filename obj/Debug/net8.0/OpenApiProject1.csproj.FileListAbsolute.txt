@@ -142,3 +142,5 @@ D:\VSCode\OpenApi\OpenApiProject1\bin\Debug\net8.0\Serilog.Formatting.Compact.dl
 D:\VSCode\OpenApi\OpenApiProject1\bin\Debug\net8.0\Serilog.Sinks.Async.dll
 D:\VSCode\OpenApi\OpenApiProject1\bin\Debug\net8.0\Serilog.Sinks.File.dll
 D:\VSCode\OpenApi\OpenApiProject1\bin\Debug\net8.0\Serilog.Sinks.RollingFile.dll
+D:\VSCode\OpenApi\OpenApiProject1\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\VSCode\OpenApi\OpenApiProject1\obj\Debug\net8.0\OpenApiProject1.sourcelink.json

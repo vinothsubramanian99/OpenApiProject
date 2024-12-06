@@ -1,7 +1,73 @@
 
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
-namespace OpenApiProject1.MiddleWareExceptionHandeling{
-public class GlobalExeceptionHandel : IMiddleware
+namespace OpenApiProject1.MiddleWareExceptionHandeling
+{
+
+    public class GlobalExeceptionHandel : IMiddleware
+    {
+
+        private readonly ILogger<GlobalExeceptionHandel> _logger;
+
+        public GlobalExeceptionHandel(ILogger<GlobalExeceptionHandel> logger)
+        { _logger = logger; }
+
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        {
+            try
+            {
+                await next(context);
+                var userAgent = context.Request.Headers["User-Agent"].ToString();
+                _logger.LogInformation($"API called from source: {userAgent}");
+                // Log the request 
+                var request = await FormatRequest(context.Request);
+                _logger.LogInformation($"Request: {request}");
+
+            }
+            catch (Exception ex)
+            {
+                var pb = new ProblemDetails
+                {
+                    Detail = ex.Message,
+                    Title = ex is ValidationException ? "Validation error" : "Internal server error",
+                    Instance = context.Request.Path,
+                    Status = ex is ValidationException ? StatusCodes.Status400BadRequest : StatusCodes.Status500InternalServerError
+                };
+
+                context.Response.StatusCode = pb.Status.Value;
+                await context.Response.WriteAsJsonAsync(pb);
+
+            }
+        }
+
+        private async Task<string> FormatRequest(HttpRequest request)
+        {
+            request.EnableBuffering(); // Enable buffering to allow multiple reads
+
+            using (var reader = new StreamReader(request.Body, leaveOpen: true))
+            {
+                var bodyAsText = await reader.ReadToEndAsync(); // Read the body as a string
+                request.Body.Position = 0; // Reset the stream position to the beginning
+                return $"{request.Method} {request.Path}{request.QueryString} {bodyAsText}";
+            }
+        }
+
+        private async Task<string> FormatResponse(HttpResponse response)
+        {
+            response.Body.Seek(0, SeekOrigin.Begin); // Ensure the stream is at the beginning
+
+            using (var reader = new StreamReader(response.Body, leaveOpen: true))
+            {
+                var text = await reader.ReadToEndAsync(); // Read the body as a string
+                response.Body.Seek(0, SeekOrigin.Begin); // Reset the stream position
+                return $"{response.StatusCode}: {text}";
+            }
+        }
+
+    }
+}
+
+/*public class GlobalExeceptionHandel : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
@@ -17,5 +83,4 @@ public class GlobalExeceptionHandel : IMiddleware
         }
          
     }
-}
-}
+}*/
