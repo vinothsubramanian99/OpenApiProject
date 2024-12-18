@@ -7,12 +7,12 @@ using System.Data.SqlClient;
 
 namespace OpenApiProject1.DBCon
 {
-    public class DBConnection : IDisposable
+    public class DBConnection
     {
-       
+
         private readonly string _connectionString = "Server=10.1.15.40;Database=AdventureWorks2019;User Id=Traininguser;Password=Traininguser;Trusted_Connection=False;TrustServerCertificate=True;";
         private SqlConnection _connection;
-        DataSet dt =new DataSet();
+        DataSet dt = new DataSet();
         public DBConnection()
         {
             _connection = new SqlConnection(_connectionString);
@@ -20,31 +20,39 @@ namespace OpenApiProject1.DBCon
 
         public DataSet GetConnection(string query)
         {
-            if (_connection.State == System.Data.ConnectionState.Closed)
+            /*   if (_connection.State == System.Data.ConnectionState.Closed)
+               {
+                   _connection.Open();
+               }
+
+               SqlCommand command=new SqlCommand(query,_connection);
+               DataAdapter ad=new SqlDataAdapter(command);
+               ad.Fill(dt);
+               return dt;*/
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                _connection.Open();
+                SqlCommand command = new SqlCommand(query, _connection);
+                DataAdapter ad = new SqlDataAdapter(command);
+                ad.Fill(dt);
             }
-            
-            SqlCommand command=new SqlCommand(query,_connection);
-            DataAdapter ad=new SqlDataAdapter(command);
-            ad.Fill(dt);
             return dt;
         }
 
-        public void CloseConnection()
-        {
-            if (_connection.State == System.Data.ConnectionState.Open)
-            {
-                _connection.Close();
-            }
-        }
 
-        public void Dispose()
+        public int ExecuteUpdate( string query)
         {
-            if (_connection != null)
+           using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                _connection.Dispose();
+                SqlCommand command = new SqlCommand(query, connection);
+             /*   if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }*/
+                connection.Open();
+                return command.ExecuteNonQuery();
             }
         }
+       
     }
 }

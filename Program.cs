@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
   using Microsoft.Extensions.Hosting; 
   using Microsoft.Extensions.Logging;
 using OpenApiProject1.Validators;
+using OpenApiProject1.SingletonService;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,11 +20,24 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }); });
   builder.Services.AddTransient<ModelValidators>();
  builder.Services.AddTransient<GlobalExeceptionHandel>();
- builder.Logging.ClearProviders(); 
-builder.Logging.AddConsole(); 
-builder.Services.AddLogging();
-builder.Logging.AddFile("D:/VSCode/OpenApi/OpenApiProject1/log/myapp-{Date}.txt");
+ builder.Services.AddSingleton<MySingletonService>();
+ //Logger part
+builder.Logging.ClearProviders(); // clearing exisiting logging provider
+builder.Logging.AddConsole();  // add log to the console
+builder.Services.AddLogging();  // registering loging service with DI continer
+// Read the logging file path from configuration 
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+var loggingFilePath = builder.Configuration["Logging:FileLogging:Path"]; 
+if (string.IsNullOrEmpty(loggingFilePath)) 
+{ 
+     new ArgumentNullException(nameof(loggingFilePath), "Logging file path cannot be null or empty.");
+      } 
+      else{
+builder.Logging.AddFile(loggingFilePath);
+      }
 
+//builder.Logging.AddFile("D:/VSCode/OpenApi/OpenApiProject1/log/myapp-{Date}.txt");
+ //Logger part
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -55,8 +69,8 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
-var logger = app.Services.GetRequiredService<ILogger<Program>>(); 
-logger.LogInformation("Application has started");
+var logger = app.Services.GetRequiredService<ILogger<Program>>(); //logger
+logger.LogInformation("Application has started");  //logger
 app.UseHttpsRedirection();
  app.UseAuthorization(); 
  app.MapControllers();

@@ -1,0 +1,6 @@
+2024-12-10T10:29:31.7725503+05:30  [INF] Application has started (91778afa)
+2024-12-10T10:29:32.4170181+05:30  [INF] Now listening on: "http://localhost:5075" (d826f4b8)
+2024-12-10T10:29:32.4173243+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2024-12-10T10:29:32.4176266+05:30  [INF] Hosting environment: "Development" (bc5a1a4e)
+2024-12-10T10:29:32.4176673+05:30  [INF] Content root path: "D:\VSCode\OpenApi\OpenApiProject1" (cc26f24e)
+2024-12-10T11:14:06.8267561+05:30  [INF] Application is shutting down... (90f52c38)

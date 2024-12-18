@@ -20,8 +20,8 @@ namespace OpenApiProject1.MiddleWareExceptionHandeling
                 var userAgent = context.Request.Headers["User-Agent"].ToString();
                 _logger.LogInformation($"API called from source: {userAgent}");
                 // Log the request 
-                var request = await FormatRequest(context.Request);
-                _logger.LogInformation($"Request: {request}");
+                //var request = await FormatRequest(context.Request);
+                //_logger.LogInformation($"Request: {request}");
 
             }
             catch (Exception ex)
@@ -40,17 +40,13 @@ namespace OpenApiProject1.MiddleWareExceptionHandeling
             }
         }
 
-        private async Task<string> FormatRequest(HttpRequest request)
-        {
-            request.EnableBuffering(); // Enable buffering to allow multiple reads
-
-            using (var reader = new StreamReader(request.Body, leaveOpen: true))
-            {
-                var bodyAsText = await reader.ReadToEndAsync(); // Read the body as a string
-                request.Body.Position = 0; // Reset the stream position to the beginning
-                return $"{request.Method} {request.Path}{request.QueryString} {bodyAsText}";
-            }
-        }
+      private async Task<string> FormatRequest(HttpRequest request) 
+      { var body = request.Body; 
+      var buffer = new byte[Convert.ToInt32(request.ContentLength)];
+       await body.ReadAsync(buffer.AsMemory(0, buffer.Length)); 
+       var bodyAsText = Encoding.UTF8.GetString(buffer); 
+       request.Body.Position = 0; 
+       return $"{request.Method} {request.Path} {request.QueryString} {bodyAsText}"; }
 
         private async Task<string> FormatResponse(HttpResponse response)
         {

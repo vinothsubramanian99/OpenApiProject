@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj": {}
+    "D:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj": {}
   },
   "projects": {
-    "d:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj": {
+    "D:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
+        "projectUniqueName": "D:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
         "projectName": "OpenApiProject1",
-        "projectPath": "d:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
+        "projectPath": "D:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
         "packagesPath": "C:\\Users\\vinoth.s\\.nuget\\packages\\",
-        "outputPath": "d:\\VSCode\\OpenApi\\OpenApiProject1\\obj\\",
+        "outputPath": "D:\\VSCode\\OpenApi\\OpenApiProject1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vinoth.s\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R72j6ZQnIXk=",
+  "dgSpecHash": "pw0nz1M0EeA=",
   "success": true,
-  "projectFilePath": "d:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
+  "projectFilePath": "D:\\VSCode\\OpenApi\\OpenApiProject1\\OpenApiProject1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vinoth.s\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\vinoth.s\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
